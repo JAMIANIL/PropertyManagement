@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @lock.number %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @lock.company_id %>
+</p>
+
+<p>
+  <strong>Property:</strong>
+  <%= @lock.property_id %>
+</p>
+
+<%= link_to 'Edit', edit_lock_path(@lock) %> |
+<%= link_to 'Back', locks_path %>

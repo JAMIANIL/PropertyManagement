@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @agent.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @agent.last_name %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @agent.role %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @agent.company_id %>
+</p>
+
+<%= link_to 'Edit', edit_agent_path(@agent) %> |
+<%= link_to 'Back', agents_path %>
