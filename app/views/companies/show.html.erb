@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
@@ -18,6 +17,16 @@
 <p>
   <strong>Founded year:</strong>
   <%= @company.founded_year %>
+</p>
+
+
+<p>
+  <strong>Agents</strong>
+  <% @company.agents.each do |x| %>
+    <li>
+    <%= x.first_name %>
+    </li>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_company_path(@company) %> |
