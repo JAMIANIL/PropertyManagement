@@ -64,6 +64,6 @@ class LocksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lock_params
-      params.require(:lock).permit(:number, :company_id, :property_id)
+      params.require(:lock).permit(:number,:company_id,:property_id)
     end
 end

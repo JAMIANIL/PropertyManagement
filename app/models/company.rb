@@ -6,8 +6,14 @@ class Company < ApplicationRecord
     validates :contact_number, presence: true,uniqueness: true
     validates :email, presence: true,uniqueness: true
     after_save :create_agent
+    after_create :create_locks
+
+    def create_locks
+        Lock.get_locks(self.id)
+    end
     
     def create_agent
-        Agent.create(company: self, first_name: "Master", last_name: "Agent", role:"Admin", email: "masteragent@gmail.com", password:123456)
+        puts "I am in"
+        Agent.create(company: self, first_name: "Master1", last_name: "agentt", role:"admin", email: "master#{self.name}@gmail.com", password:1234567)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_100826) do
+ActiveRecord::Schema.define(version: 2021_03_04_073408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,12 +43,10 @@ ActiveRecord::Schema.define(version: 2021_03_03_100826) do
 
   create_table "locks", force: :cascade do |t|
     t.integer "number"
-    t.bigint "company_id", null: false
-    t.bigint "property_id", null: false
+    t.integer "company_id"
+    t.integer "property_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["company_id"], name: "index_locks_on_company_id"
-    t.index ["property_id"], name: "index_locks_on_property_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -62,7 +60,5 @@ ActiveRecord::Schema.define(version: 2021_03_03_100826) do
   end
 
   add_foreign_key "agents", "companies"
-  add_foreign_key "locks", "companies"
-  add_foreign_key "locks", "properties"
   add_foreign_key "properties", "companies"
 end

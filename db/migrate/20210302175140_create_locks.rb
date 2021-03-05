@@ -2,8 +2,8 @@ class CreateLocks < ActiveRecord::Migration[6.1]
   def change
     create_table :locks do |t|
       t.integer :number
-      t.references :company, null: false, foreign_key: true
-      t.references :property, null: false, foreign_key: true
+      t.integer :company_id
+      t.integer :property_id
 
       t.timestamps
     end

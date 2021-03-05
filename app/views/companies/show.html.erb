@@ -29,5 +29,14 @@
   <% end %>
 </p>
 
+<p>
+  <strong>Locks/strong>
+  <% @company.locks.each do |x| %>
+    <li>
+    <%= x.number %>
+    </li>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>
