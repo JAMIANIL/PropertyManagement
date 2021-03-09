@@ -1,6 +1,8 @@
 module Api 
     module V1
         class CompaniesController < ApplicationController
+            protect_from_forgery with: :null_session
+
             def index
                 
                 companies =Company.order('Created_at DESC');
@@ -18,7 +20,7 @@ module Api
 
             def create
                 company =Company.new(company_params)
-                company.user_id = doorkeeper_token[:resource_owner_id]
+                #company.user_id = doorkeeper_token[:resource_owner_id]
                 
                 if company.save
                     render json: {data:company}

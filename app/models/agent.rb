@@ -7,4 +7,10 @@ class Agent < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   belongs_to :company
+
+  #the authenticate class method from devise documentation
+  def self.authenticate(email, password)
+    agent = Agent.find_for_authentication(email: email)
+    agent&.valid_password?(password) ? agent : nil
+  end
 end

@@ -1,6 +1,7 @@
 class Lock < ApplicationRecord
-  #validates :number, presence: true
-  #validates :number, uniqueness: true
+  #validates :property_id, presence: true
+  #validates :property_id, uniqueness: true
+  validates :property_id, uniqueness: { allow_blank: true}
   belongs_to :company,optional: true
   belongs_to :property,optional: true
 

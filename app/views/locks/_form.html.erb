@@ -23,7 +23,16 @@
 
   <div class="field">
     <%= form.label :property_id %>
-    <%= form.text_field :property_id %>
+    <%= 
+    properties =Property.all
+    selected_prop=[]
+    properties.each do |prop|
+     if @lock.company_id == prop.company_id
+        selected_prop.push(prop)
+     end
+    end
+    form.collection_select(:property_id,selected_prop, :id, :name)
+    %>
   </div>
 
   <div class="actions">

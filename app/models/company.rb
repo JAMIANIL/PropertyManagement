@@ -14,6 +14,6 @@ class Company < ApplicationRecord
     
     def create_agent
         puts "I am in"
-        Agent.create(company: self, first_name: "Master1", last_name: "agentt", role:"admin", email: "master#{self.name}@gmail.com", password:1234567)
+        Agent.create(company: self, first_name: "Master1", last_name: "agentt", role:"admin", email: "master#{self.name}@gmail.com", password: "1234567")
     end
 end

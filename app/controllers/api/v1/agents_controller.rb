@@ -1,6 +1,8 @@
 module Api 
     module V1
         class AgentsController < ApplicationController
+            protect_from_forgery with: :null_session
+
             def index
                 
                 agents =Agent.order('Created_at DESC');
@@ -18,7 +20,7 @@ module Api
 
             def create
                 agent =Agent.new(agent_params)
-                agent.user_id = doorkeeper_token[:resource_owner_id]
+                #agent.user_id = doorkeeper_token[:resource_owner_id]
                 
                 if agent.save
                     render json: {data:agent}
@@ -44,9 +46,8 @@ module Api
             
             private
             def agent_params
-                params.require(:agent).permit(:first_name, :last_name, :role, :company_id, :email, :password)
+                params.require(:agent).permit(:first_name, :last_name, :password, :role, :company_id, :email)
             end
-
 
         end
     end
