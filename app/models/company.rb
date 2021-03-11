@@ -5,11 +5,11 @@ class Company < ApplicationRecord
     validates :name, presence: true
     validates :contact_number, presence: true,uniqueness: true
     validates :email, presence: true,uniqueness: true
-    after_save :create_agent
+    after_create :create_agent
     after_create :create_locks
 
     def create_locks
-        Lock.get_locks(self.id)
+        Lock.assign_locks(self.id)
     end
     
     def create_agent

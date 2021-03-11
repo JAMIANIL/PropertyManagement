@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     namespace 'v1' do
+     # get 'companies/id/get_properties',:defaults => { :format => 'json' }
       resources :companies,:defaults => { :format => 'json' }
       resources :agents,:defaults => { :format => 'json' }  
       resources :properties,:defaults => { :format => 'json' }      

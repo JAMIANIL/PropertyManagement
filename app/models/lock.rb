@@ -5,7 +5,7 @@ class Lock < ApplicationRecord
   belongs_to :company,optional: true
   belongs_to :property,optional: true
 
-  def self.get_locks(company_id)
+  def self.assign_locks(company_id)
     locks = Lock.all
     n=0
     locks.each do |lock|

@@ -10,14 +10,14 @@ module Api
             end
             
             def show
-                company =Company.find(params[:id])
-                render json: {status: 'SUCCESS',message:'Company',data:company}
+                company = Company.find_by(id: params[:id])
+                if company.present?
+                    render json: {'success': true,data:company}, status: :ok 
+                else
+                    render json: {'success': false}, status: :forbidden
+                end
             end
-
-            def new
-                company =Company.new
-            end
-
+                               
             def create
                 company =Company.new(company_params)
                 #company.user_id = doorkeeper_token[:resource_owner_id]

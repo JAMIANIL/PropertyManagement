@@ -10,17 +10,18 @@ module Api
             end
 
             def index
-                properties =Property.order('Created_at DESC');
-                selected_prop=[]
-                properties.each do |prop|
-                    if current_agent.company_id == prop.company_id
-                       selected_prop.push(prop)
-                    end
-                  end
+                #properties =Property.order('Created_at DESC');
+                #selected_prop=[]
+                #properties.each do |prop|
+                 #   if current_agent.company_id == prop.company_id
+                  #     selected_prop.push(prop)
+                   # end
+                  #end
+                  selected_prop=Property.where(company_id: current_agent.company_id)
                 render json: {message:'Properties',data:selected_prop}
             end
             
-            def show
+            def show    
                 property =Property.find(params[:id])
                 render json: {status: 'SUCCESS',message:'Property',data:property}
             end
@@ -31,16 +32,20 @@ module Api
 
             def create
                 property =Property.new(property_params)
+                #property.company_id=current_agent.company_id;
                 #property.user_id = doorkeeper_token[:resource_owner_id]
-                if current_agent.company_id != property.company_id
-                    render json: {message:"Invalid token",data:property}
-                else
-                  if property.save
-                    render json: {data:property}
-                  else
-                    render json: {data:property.errors}
-                  end
-                end
+                property.company_id = current_agent.company_id 
+                property.save
+                render json: {data:property}
+               # if current_agent.company_id != property.company_id
+              #      render json: {message:"Invalid token",data:property} 
+              #  else
+                #  if property.save
+                 #   render json: {data:property}
+                 # else
+                #    render json: {data:property.errors}
+                 # end
+               # end
             end
 
             def update
@@ -60,7 +65,7 @@ module Api
             
             private
             def property_params
-                params.require(:property).permit(:name, :address, :area, :company_id)
+                params.require(:property).permit(:name, :address, :area)
             end
 
 
