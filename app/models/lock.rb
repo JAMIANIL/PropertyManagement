@@ -6,16 +6,7 @@ class Lock < ApplicationRecord
   belongs_to :property,optional: true
 
   def self.assign_locks(company_id)
-    locks = Lock.all
-    n=0
-    locks.each do |lock|
-      if lock.company.blank?
-        lock.update_attribute(:company_id, company_id)
-        n+=1
-      end
-      if n>9
-        break
-      end
-    end
+    unassigned_locks = Lock.where(company_id: nil).limit(10)
+    unassigned_locks.update_all(company_id: company_id)
   end
 end

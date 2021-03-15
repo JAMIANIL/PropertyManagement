@@ -3,11 +3,14 @@ class CompaniesController < ApplicationController
 
   # GET /companies or /companies.json
   def index
+    byebug
     @companies = Company.all
   end
 
   # GET /companies/1 or /companies/1.json
   def show
+    #byebug
+   # company = Company.find_by(id: params[:id])
   end
 
   # GET /companies/new
